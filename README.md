@@ -12,14 +12,14 @@ Projekt udostępnia CRUD oraz zgodne z REST podejście do aktualizacji zasobu:
 
 - ✅ CRUD dla zasobu **Employee**
 - ✅ **Walidacja wejścia** (`jakarta.validation`)
-- ✅ **Globalna obsługa wyjątków** (`@RestControllerAdvice`, `ProblemDetail`)
+- ✅ **Globalna obsługa wyjątków** (`@RestControllerAdvice`)
 - ✅ **JPA/Hibernate** + **MySQL**
 - ✅ **Flyway** (migracje schematu bazy)
 - ✅ **Optymistyczne blokowanie** (`@Version`) – ochrona przed nadpisywaniem zmian
 - ✅ Obsługa konfliktów:
   - `email` jako **UNIQUE** (konflikt → 409)
   - konflikt wersji (`version`) → 409
-- ✅ Testy (JUnit) *(jeśli masz – opisz; jeśli nie, usuń sekcję)*
+- ✅ Testy (JUnit) (WIP)
 
 ---
 
@@ -59,6 +59,3 @@ co oznacza, że aplikacja **nie tworzy** tabel automatycznie — schemat musi zo
 - Java 17+
 - Maven 3.9+
 - MySQL 8+
-
-### 1) Utworzenie bazy danych
-```sql```sql
