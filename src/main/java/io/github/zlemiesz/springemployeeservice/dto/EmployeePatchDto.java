@@ -1,4 +1,4 @@
-package io.github.zlemiesz.springemployeeservice.employee;
+package io.github.zlemiesz.springemployeeservice.dto;
 
 import io.github.zlemiesz.springemployeeservice.validation.NullOrNotBlank;
 import jakarta.validation.constraints.*;
@@ -18,7 +18,7 @@ public class EmployeePatchDto {
     @NullOrNotBlank(message = "{common.notBlank}")
     private String email;
 
-    @NotNull(message = "{common.version}")
+    @NotNull(message = "{common.versionRequired}")
     private Long version;
 
 

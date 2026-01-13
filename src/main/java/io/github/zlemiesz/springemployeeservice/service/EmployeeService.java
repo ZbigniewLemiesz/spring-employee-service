@@ -1,7 +1,8 @@
-package io.github.zlemiesz.springemployeeservice.employee;
+package io.github.zlemiesz.springemployeeservice.service;
 
-import jakarta.validation.Valid;
-import tools.jackson.databind.JsonNode;
+import io.github.zlemiesz.springemployeeservice.dto.*;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
@@ -9,16 +10,16 @@ import java.util.List;
  * @author Zbigniew Lemiesz
  */
 public interface EmployeeService {
-    EmployeeDto create(EmployeeDto dto);
+    Page<EmployeeResponseDto> findAll(String firstName, String lastName, String email, Pageable pageable);
 
-    List<EmployeeDto> findAll();
+    EmployeeResponseDto findById(Long id);
 
-    EmployeeDto findById(Long id);
+    EmployeeResponseDto create(EmployeeCreateDto dto);
 
-    EmployeeDto update(Long id, EmployeePutDto dto);
+    EmployeeResponseDto update(Long id, EmployeePutDto dto);
 
-    void delete(Long id);
+    EmployeeResponseDto patchDto(Long id, EmployeePatchDto employeePatchDto);
 
-    EmployeeDto patchDto(Long id, @Valid EmployeePatchDto employeePatchDto);
+    void delete(Long id, Long verson);
 }
 

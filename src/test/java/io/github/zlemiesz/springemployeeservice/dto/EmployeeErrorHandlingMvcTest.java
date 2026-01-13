@@ -1,8 +1,10 @@
 
-package io.github.zlemiesz.springemployeeservice.employee;
+package io.github.zlemiesz.springemployeeservice.dto;
 
+import io.github.zlemiesz.springemployeeservice.controller.EmployeeController;
 import io.github.zlemiesz.springemployeeservice.handler.GlobalExceptionHandler;
 import io.github.zlemiesz.springemployeeservice.model.Employee;
+import io.github.zlemiesz.springemployeeservice.service.EmployeeService;
 import jakarta.persistence.EntityNotFoundException;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -219,7 +221,7 @@ class EmployeeErrorHandlingMvcTest {
                 }
                 """;
 
-        when(employeeService.create(any(EmployeeDto.class)))
+        when(employeeService.create(any(EmployeeCreateDto.class)))
                 .thenThrow(new DataIntegrityViolationException("duplicate key"));
 
         var ra = mockMvc.perform(post("/employee")

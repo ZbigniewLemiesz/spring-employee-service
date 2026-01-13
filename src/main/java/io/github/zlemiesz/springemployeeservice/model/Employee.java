@@ -1,4 +1,4 @@
-package io.github.zlemiesz.springemployeeservice.employee;
+package io.github.zlemiesz.springemployeeservice.model;
 
 import jakarta.persistence.*;
 

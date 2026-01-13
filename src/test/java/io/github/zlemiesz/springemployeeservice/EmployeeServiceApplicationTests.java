@@ -1,4 +1,4 @@
-package zbl.restful;
+package io.github.zlemiesz.springemployeeservice;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -1,5 +1,7 @@
-package io.github.zlemiesz.springemployeeservice.dto;
+package io.github.zlemiesz.springemployeeservice.mapper;
 
+import io.github.zlemiesz.springemployeeservice.dto.EmployeeCreateDto;
+import io.github.zlemiesz.springemployeeservice.dto.EmployeeResponseDto;
 import io.github.zlemiesz.springemployeeservice.model.Employee;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
@@ -9,13 +11,18 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class EmployeeMapper {
-    private final ModelMapper mapper = new ModelMapper();
-    
-    public Employee toEntity(EmployeeDto dto) {
+    private final ModelMapper mapper;
+
+    public EmployeeMapper(ModelMapper mapper){
+        this.mapper = mapper;
+    }
+
+    public EmployeeResponseDto toResponse(Employee entity) {
+        return mapper.map(entity, EmployeeResponseDto.class);
+    }
+
+    public Employee toEntity(EmployeeCreateDto dto) {
         return mapper.map(dto, Employee.class);
     }
 
-    public EmployeeDto toDto(Employee entity) {
-        return mapper.map(entity, EmployeeDto.class);
-    }
 }

@@ -1,4 +1,4 @@
-package io.github.zlemiesz.springemployeeservice.employee;
+package io.github.zlemiesz.springemployeeservice.dto;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -19,7 +19,7 @@ public class EmployeePutDto {
     @Email(message = "{common.email}")
     private String email;
 
-    @NotNull(message = "{common.version}")
+    @NotNull(message = "{common.versionRequired}")
     private Long version;
 
     public String getFirstName() {

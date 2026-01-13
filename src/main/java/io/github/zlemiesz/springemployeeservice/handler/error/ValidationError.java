@@ -1,4 +1,4 @@
-package io.github.zlemiesz.springemployeeservice.error;
+package io.github.zlemiesz.springemployeeservice.handler.error;
 
 /**
  * @author Zbigniew Lemiesz
