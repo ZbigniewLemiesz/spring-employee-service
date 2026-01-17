@@ -1,6 +1,7 @@
 package io.github.zlemiesz.springemployeeservice.controller;
 
 import io.github.zlemiesz.springemployeeservice.dto.*;
+import io.github.zlemiesz.springemployeeservice.dto.common.PageResponse;
 import io.github.zlemiesz.springemployeeservice.service.EmployeeService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
@@ -31,13 +32,22 @@ public class EmployeeController {
 
     @PreAuthorize("hasAnyRole('VIEWER','MANAGER','HR','ADMIN')")
     @GetMapping
-    public Page<EmployeeResponseDto> getAll(
+    public PageResponse<EmployeeResponseDto> getAll(
             @RequestParam(required = false) String firstName,
             @RequestParam(required = false) String lastName,
             @RequestParam(required = false) String email,
             Pageable pageable
     ) {
-        return service.findAll(firstName, lastName, email, pageable);
+        Page<EmployeeResponseDto> page = service.findAll(firstName, lastName, email, pageable);
+        return new PageResponse<>(
+                page.getContent(),
+                page.getNumber(),
+                page.getSize(),
+                page.getTotalElements(),
+                page.getTotalPages(),
+                page.isFirst(),
+                page.isLast()
+        );
     }
 
     @PreAuthorize("hasAnyRole('VIEWER','MANAGER','HR','ADMIN')")
@@ -61,7 +71,7 @@ public class EmployeeController {
 
     @PreAuthorize("hasAnyRole('MANAGER','HR','ADMIN')")
     @PatchMapping("/{id}")
-    public EmployeeResponseDto patch(@PathVariable @Positive Long id, @Valid  @RequestBody EmployeePatchDto employeePatchDto){
+    public EmployeeResponseDto patch(@PathVariable @Positive Long id, @Valid @RequestBody EmployeePatchDto employeePatchDto) {
         return service.patchDto(id, employeePatchDto);
     }
 
