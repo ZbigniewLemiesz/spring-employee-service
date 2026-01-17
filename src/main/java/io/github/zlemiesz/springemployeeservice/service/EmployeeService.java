@@ -20,6 +20,6 @@ public interface EmployeeService {
 
     EmployeeResponseDto patchDto(Long id, EmployeePatchDto employeePatchDto);
 
-    void delete(Long id, Long verson);
+    void delete(Long id, Long version);
 }
 

@@ -8,11 +8,9 @@ import io.github.zlemiesz.springemployeeservice.mapper.EmployeeMapper;
 import io.github.zlemiesz.springemployeeservice.model.Employee;
 import io.github.zlemiesz.springemployeeservice.repository.EmployeeRepository;
 import io.github.zlemiesz.springemployeeservice.specification.EmployeeSpecifications;
-import jakarta.persistence.criteria.Predicate;
 import jakarta.transaction.Transactional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
