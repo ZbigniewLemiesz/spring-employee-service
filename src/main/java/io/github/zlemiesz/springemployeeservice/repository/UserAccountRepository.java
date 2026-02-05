@@ -1,6 +1,5 @@
 package io.github.zlemiesz.springemployeeservice.repository;
 
-import io.github.zlemiesz.springemployeeservice.model.Employee;
 import io.github.zlemiesz.springemployeeservice.model.UserAccount;
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;

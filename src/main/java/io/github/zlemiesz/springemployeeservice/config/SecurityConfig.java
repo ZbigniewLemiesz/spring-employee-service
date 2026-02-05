@@ -37,9 +37,6 @@ public class SecurityConfig {
                                             AccessDeniedHandler restDeniedHandler) throws Exception {
 
         http
-                // dla sesji + cookies CSRF ma znaczenie:
-                // - jeśli masz SPA i robisz POST/PUT/DELETE z przeglądarki → CSRF zostaw włączone
-                // - jeśli na start chcesz uprościć testy Postmanem → można wyłączyć
                 .cors(Customizer.withDefaults())
 
                 .csrf(csrf -> csrf.disable())
@@ -71,10 +68,11 @@ public class SecurityConfig {
                         .anyRequest().authenticated()
                 )
 
-                // ✅ formularz logowania (Spring domyślnie ma /login)
+                // formularz logowania
                 .formLogin(form -> form
-                        .loginProcessingUrl("/login") // POST /login (username, password)
-                        .successHandler((request, response, authentication) -> {
+                        .loginProcessingUrl("/login")
+                        .usernameParameter("email")
+                        .passwordParameter("password")                        .successHandler((request, response, authentication) -> {
                             response.setStatus(HttpStatus.NO_CONTENT.value()); // 204
                         })
                         .failureHandler((request, response, ex) -> {
@@ -103,29 +101,6 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
-    // na start: in-memory użytkownicy
-    @Bean
-    UserDetailsService userDetailsService(PasswordEncoder encoder) {
-        UserDetails admin = User.builder()
-                .username("admin")
-                .password(encoder.encode("admin123"))
-                .roles("ADMIN")
-                .build();
-
-        UserDetails hr = User.builder()
-                .username("dorota")
-                .password(encoder.encode("test1234"))
-                .roles("HR")
-                .build();
-
-        UserDetails viewer = User.builder()
-                .username("viewer")
-                .password(encoder.encode("viewer123"))
-                .roles("VIEWER")
-                .build();
-
-        return new InMemoryUserDetailsManager(admin, hr, viewer);
-    }
 
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
