@@ -1,0 +1,6 @@
+INSERT INTO roles(name) VALUES
+  ('ROLE_ADMIN'),
+  ('ROLE_HR'),
+  ('ROLE_MANAGER'),
+  ('ROLE_VIEWER')
+ON DUPLICATE KEY UPDATE name = VALUES(name);
