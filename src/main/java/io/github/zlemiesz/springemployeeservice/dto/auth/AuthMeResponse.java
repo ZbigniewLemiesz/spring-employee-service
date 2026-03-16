@@ -1,4 +1,4 @@
-package io.github.zlemiesz.springemployeeservice.dto.common;
+package io.github.zlemiesz.springemployeeservice.dto.auth;
 
 
 import java.util.Set;

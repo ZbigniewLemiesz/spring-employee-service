@@ -64,11 +64,11 @@ public class SecurityConfig {
                         .anyRequest().authenticated()
                 )
 
-                // formularz logowania
                 .formLogin(form -> form
                         .loginProcessingUrl("/login")
                         .usernameParameter("email")
-                        .passwordParameter("password")                        .successHandler((request, response, authentication) -> {
+                        .passwordParameter("password")
+                        .successHandler((request, response, authentication) -> {
                             response.setStatus(HttpStatus.NO_CONTENT.value()); // 204
                         })
                         .failureHandler((request, response, ex) -> {

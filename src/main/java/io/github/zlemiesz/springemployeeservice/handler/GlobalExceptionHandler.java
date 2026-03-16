@@ -158,7 +158,6 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
                 pathOf(request)
         );
 
-        // budujemy errors przez helper -> init properties + mutowalność
         ex.getBindingResult()
                 .getFieldErrors()
                 .forEach(fe -> addError(
@@ -368,13 +367,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
                 : ex.getClass().getSimpleName();
     }
 
-    /**
-     * Append one ValidationError to pd.properties["errors"].
-     *
-     * IMPORTANT (Spring Boot 4 / Spring 7):
-     * - pd.getProperties() can be null until you call pd.setProperty(...)
-     * - List.of(...) is immutable -> we always re-set a mutable ArrayList
-     */
+
     @SuppressWarnings("unchecked")
     private void addError(ProblemDetail pd, String field, String message) {
 
